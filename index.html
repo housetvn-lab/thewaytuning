@@ -3,634 +3,407 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>THE WAY TUNING | TWT 수입차 튜닝 전문 & 시공 갤러리</title>
-
+<title>THE WAY TUNING | TWT 수입차튜닝전문</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          twt: {
-            bg: '#09080a',
-            card: '#121014',
-            panel: '#18151b',
-            border: 'rgba(255, 255, 255, 0.08)',
-            red: '#e8332c',
-            orange: '#ff8a1e',
-            gray: '#a49e98'
-          }
-        },
-        fontFamily: {
-          display: ['Anton', 'Pretendard', 'sans-serif'],
-          outfit: ['Outfit', 'sans-serif'],
-          body: ['Pretendard', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
-
 <style>
-  :root {
-    --grad-primary: linear-gradient(135deg, #e8332c 0%, #ff8a1e 100%);
-    --grad-glow: linear-gradient(135deg, rgba(232,51,44,0.3) 0%, rgba(255,138,30,0.1) 100%);
-    --carbon-pattern: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  :root{
+    --bg:#ffffff;
+    --bg-soft:#f5f6f8;
+    --surface:#ffffff;
+    --border:#e6e7eb;
+    --text:#1c2028;
+    --text-dim:#5c6270;
+    --text-faint:#9198a3;
+    --red:#e0362c;
+    --red-dark:#b8281f;
+    --red-soft:#fdeceb;
+    --navy:#16324f;
+    --navy-soft:#eaf1f6;
+    --font:"Pretendard","Apple SD Gothic Neo",sans-serif;
+    --shadow-sm: 0 1px 2px rgba(20,24,33,0.04), 0 1px 1px rgba(20,24,33,0.03);
+    --shadow-md: 0 8px 24px rgba(20,24,33,0.07);
   }
-  body {
-    background-color: #09080a;
-    color: #f5f2ec;
-    font-family: 'Pretendard', sans-serif;
-    overflow-x: hidden;
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--bg); color:var(--text); font-family:var(--font); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:var(--red); color:#fff; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1160px; margin:0 auto; padding:0 32px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
+
+  .util-bar{ background:var(--navy); font-size:12.5px; }
+  .util-inner{ max-width:1160px; margin:0 auto; padding:0 32px; height:34px; display:flex; align-items:center; gap:18px; color:rgba(255,255,255,0.72); overflow-x:auto; }
+  .util-inner a{ transition:color .2s ease; white-space:nowrap; }
+  .util-inner a:hover{ color:#fff; }
+  .util-sep{ color:rgba(255,255,255,0.25); }
+  .util-new{ color:#ff9d8f; font-size:9px; font-weight:800; margin-left:2px; }
+
+  header.nav{ position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
+  .nav-inner{ max-width:1160px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .logo-lockup{ display:flex; align-items:baseline; gap:8px; }
+  .logo-lockup .sub{ font-weight:600; font-size:13px; color:var(--text-faint); }
+  .logo-lockup .big{ font-weight:800; font-size:23px; letter-spacing:0.3px; color:var(--red); }
+  nav.links{ display:flex; gap:30px; }
+  nav.links a{ font-weight:600; font-size:14.5px; color:var(--text-dim); transition:color .2s ease; }
+  nav.links a:hover, nav.links a.active{ color:var(--navy); }
+  .nav-right{ display:flex; align-items:center; gap:16px; }
+  .btn-cta{ font-weight:700; font-size:14px; padding:11px 22px; border-radius:8px; border:none; color:#fff; background:var(--red); cursor:pointer; transition:background .2s ease, transform .2s ease; }
+  .btn-cta:hover{ background:var(--red-dark); transform:translateY(-1px); }
+  .burger{ display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:8px; }
+  .burger span{ width:22px; height:2px; background:var(--text); display:block; }
+
+  /* HERO */
+  .hero{ position:relative; padding:76px 0; overflow:hidden; background:var(--bg-soft); border-bottom:1px solid var(--border); }
+  .hero-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; }
+  .hero-badge{ display:inline-flex; align-items:center; gap:8px; padding:7px 14px; background:var(--red-soft); color:var(--red-dark); font-weight:700; font-size:13px; border-radius:20px; margin-bottom:20px; }
+  .hero-badge svg{ width:14px; height:14px; }
+  .hero h1{ font-weight:800; font-size:clamp(30px,4vw,44px); line-height:1.28; letter-spacing:-0.5px; color:var(--navy); }
+  .hero h1 .accent{ color:var(--red); }
+  .hero p.desc{ margin-top:20px; font-size:16px; line-height:1.85; color:var(--text-dim); max-width:480px; }
+  .svc-tags{ margin-top:24px; display:flex; flex-wrap:wrap; gap:8px; }
+  .svc-tag{ font-size:13px; font-weight:600; padding:8px 14px; border:1px solid var(--border); border-radius:20px; color:var(--text-dim); background:#fff; }
+  .hero-cta-row{ margin-top:32px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .hero-phone{ display:inline-flex; align-items:center; gap:12px; padding:16px 26px; border-radius:10px; background:var(--red); color:#fff; box-shadow:var(--shadow-md); transition:transform .2s ease, background .2s ease; }
+  .hero-phone:hover{ transform:translateY(-2px); background:var(--red-dark); }
+  .hero-phone svg{ width:19px; height:19px; }
+  .hero-phone .num{ font-weight:800; font-size:20px; letter-spacing:0.2px; }
+  .hero-addr{ font-size:14px; color:var(--text-dim); display:flex; align-items:center; gap:8px; }
+  .hero-addr svg{ width:16px; height:16px; color:var(--red); flex-shrink:0; }
+  .trust-row{ margin-top:36px; display:flex; gap:28px; flex-wrap:wrap; }
+  .trust-item{ display:flex; align-items:center; gap:10px; }
+  .trust-item svg{ width:20px; height:20px; color:var(--navy); flex-shrink:0; }
+  .trust-item b{ display:block; font-size:16px; font-weight:800; color:var(--navy); }
+  .trust-item span{ font-size:12px; color:var(--text-faint); }
+
+  .hero-visual{ position:relative; aspect-ratio:1/1; }
+  .hero-visual .ring{ position:absolute; inset:0; border-radius:50%; background:radial-gradient(circle at 35% 30%, var(--navy-soft), #fff 70%); border:1px solid var(--border); }
+  .hero-visual .car-icon{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+  .hero-visual .car-icon svg{ width:62%; height:62%; color:var(--navy); }
+  .hero-visual .chip{ position:absolute; background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px 16px; box-shadow:var(--shadow-md); display:flex; align-items:center; gap:10px; }
+  .hero-visual .chip svg{ width:18px; height:18px; color:var(--red); }
+  .hero-visual .chip b{ font-size:14px; }
+  .hero-visual .chip span{ display:block; font-size:11px; color:var(--text-faint); }
+  .chip-1{ top:6%; left:-4%; }
+  .chip-2{ bottom:10%; right:-6%; }
+
+  .quicknav{ display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--border); }
+  .qn-item{ position:relative; padding:24px 22px; border-right:1px solid var(--border); display:flex; align-items:center; gap:14px; transition:background .2s ease; }
+  .qn-item:last-child{ border-right:none; }
+  .qn-item:hover{ background:var(--bg-soft); }
+  .qn-icon{ width:38px; height:38px; border-radius:9px; background:var(--red-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .qn-icon svg{ width:18px; height:18px; color:var(--red); }
+  .qn-label{ font-weight:700; font-size:15px; color:var(--navy); }
+
+  /* PHOTO SLIDER */
+  .photo-slider{ padding:26px 0; background:#fff; border-bottom:1px solid var(--border); overflow:hidden; }
+  .slider-track{ display:flex; gap:16px; width:max-content; animation:sliderScroll 32s linear infinite; }
+  .photo-slider:hover .slider-track{ animation-play-state:paused; }
+  @keyframes sliderScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .slide-item{ position:relative; width:230px; height:170px; border-radius:12px; overflow:hidden; flex-shrink:0; border:1px solid var(--border); background-size:cover; background-position:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+  .slide-item::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(10,15,25,0.5), transparent 55%); pointer-events:none; }
+  .slide-caption{ position:relative; z-index:2; padding:0 14px 14px; color:#fff; font-weight:700; font-size:13.5px; align-self:flex-start; margin-top:auto; }
+  .slide-icon{ position:relative; z-index:2; width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.16); display:flex; align-items:center; justify-content:center; margin-top:auto; }
+  .slide-icon svg{ width:24px; height:24px; color:#fff; }
+  .slide-item.placeholder{ align-items:flex-start; justify-content:flex-end; padding:0; }
+
+  /* MAP LINK BUTTONS */
+  .map-links{ display:flex; gap:12px; margin-top:22px; flex-wrap:wrap; }
+  .map-btn{ display:inline-flex; align-items:center; gap:8px; padding:13px 20px; border-radius:10px; font-weight:700; font-size:14px; border:1px solid transparent; transition:filter .2s ease, transform .2s ease; }
+  .map-btn:hover{ filter:brightness(0.95); transform:translateY(-1px); }
+  .map-btn svg{ width:16px; height:16px; }
+  .map-btn.kakao{ background:#FEE500; color:#3C1E1E; }
+  .map-btn.naver{ background:#03C75A; color:#fff; }
+  .loc-info-panel{ background:var(--navy); border-radius:14px; padding:32px; color:#fff; display:flex; flex-direction:column; justify-content:center; }
+  .loc-info-panel h3{ font-size:20px; font-weight:800; }
+  .loc-info-panel p{ margin-top:10px; font-size:14px; color:rgba(255,255,255,0.72); line-height:1.7; }
+
+  section{ padding:88px 0; position:relative; }
+  .sec-head{ margin-bottom:44px; max-width:600px; }
+  .sec-eyebrow{ font-weight:700; font-size:13px; letter-spacing:2px; color:var(--red); text-transform:uppercase; margin-bottom:12px; }
+  .sec-head h2{ font-weight:800; font-size:clamp(26px,3.2vw,36px); letter-spacing:-0.3px; line-height:1.2; color:var(--navy); }
+  .sec-head p{ margin-top:12px; color:var(--text-dim); font-size:15.5px; line-height:1.75; }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  .svc-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .svc-card{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:26px 22px; transition:box-shadow .2s ease, transform .2s ease; }
+  .svc-card:hover{ box-shadow:var(--shadow-md); transform:translateY(-3px); }
+  .svc-icon{ width:42px; height:42px; border-radius:10px; background:var(--red-soft); display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+  .svc-icon svg{ width:20px; height:20px; color:var(--red); }
+  .svc-title{ font-weight:700; font-size:16px; color:var(--navy); }
+  .svc-desc{ margin-top:6px; font-size:12.5px; color:var(--text-faint); line-height:1.6; }
+
+  .gal-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .gal-card{ position:relative; aspect-ratio:3/4; border-radius:14px; overflow:hidden; border:1px solid var(--border); background:linear-gradient(160deg, var(--navy-soft) 0%, #fff 100%); }
+  .gal-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:4px; background:var(--red); }
+  .gal-body{ position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; }
+  .gal-tag{ font-weight:700; font-size:11px; letter-spacing:1.5px; color:var(--red); text-transform:uppercase; margin-bottom:6px; }
+  .gal-title{ font-weight:800; font-size:18px; color:var(--navy); }
+
+  .process-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .proc-item{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:28px 24px; }
+  .proc-num{ width:38px; height:38px; border-radius:50%; border:2px solid var(--red); color:var(--red); font-weight:800; font-size:16px; display:flex; align-items:center; justify-content:center; }
+  .proc-title{ font-weight:700; font-size:16.5px; margin-top:16px; color:var(--navy); }
+  .proc-desc{ margin-top:8px; font-size:13px; color:var(--text-faint); line-height:1.7; }
+
+  .cta-banner{ background:var(--navy); padding:52px 0; }
+  .cta-inner{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .cta-inner h3{ font-weight:800; font-size:clamp(22px,2.8vw,28px); color:#fff; }
+  .cta-inner p{ margin-top:6px; color:rgba(255,255,255,0.65); font-weight:500; font-size:14px; }
+  .cta-call{ display:inline-flex; align-items:center; gap:12px; background:var(--red); color:#fff; padding:16px 26px; border-radius:10px; transition:background .2s ease; }
+  .cta-call:hover{ background:var(--red-dark); }
+  .cta-call svg{ width:18px; height:18px; }
+  .cta-call .num{ font-weight:800; font-size:19px; letter-spacing:0.3px; }
+
+  .loc-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:24px; }
+  .loc-map{ position:relative; border-radius:14px; overflow:hidden; min-height:300px; background:linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px), var(--bg-soft); background-size:28px 28px; border:1px solid var(--border); }
+  .loc-pin{ position:absolute; top:46%; left:54%; transform:translate(-50%,-100%); }
+  .loc-pin .dot{ width:20px; height:20px; border-radius:50% 50% 50% 0; background:var(--red); transform:rotate(-45deg); box-shadow:0 0 0 6px rgba(224,54,44,0.15); }
+  .loc-card{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:30px; display:flex; flex-direction:column; gap:22px; justify-content:center; }
+  .loc-row{ display:flex; gap:14px; align-items:flex-start; }
+  .loc-row svg{ width:19px; height:19px; color:var(--red); flex-shrink:0; margin-top:2px; }
+  .loc-row .lk{ font-weight:700; font-size:11.5px; letter-spacing:1px; color:var(--text-faint); text-transform:uppercase; margin-bottom:4px; }
+  .loc-row .lv{ font-size:15px; color:var(--text); line-height:1.6; }
+  .loc-row .lv.strong{ font-weight:800; font-size:19px; color:var(--navy); }
+
+  footer{ border-top:1px solid var(--border); padding:32px 0; background:var(--bg-soft); }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .footer-inner .f-logo{ font-weight:800; font-size:16px; color:var(--red); }
+  .footer-inner .f-meta{ font-size:12px; color:var(--text-faint); line-height:1.8; text-align:right; }
+
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--red); outline-offset:2px; }
+
+  @media (max-width:980px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-visual{ display:none; }
+    .svc-grid{ grid-template-columns:repeat(2,1fr); }
+    .gal-grid{ grid-template-columns:repeat(2,1fr); }
+    .process-strip{ grid-template-columns:repeat(2,1fr); }
+    .quicknav{ grid-template-columns:repeat(2,1fr); }
+    .loc-grid{ grid-template-columns:1fr; }
+    nav.links{ display:none; }
+    .burger{ display:flex; }
   }
-  ::selection {
-    background: #e8332c;
-    color: #fff;
+  @media (max-width:600px){
+    .wrap{ padding:0 20px; }
+    .nav-inner{ padding:14px 20px; }
+    .svc-grid, .gal-grid, .process-strip, .quicknav{ grid-template-columns:1fr; }
+    section{ padding:60px 0; }
+    .hero{ padding:56px 0; }
+    .cta-inner{ flex-direction:column; align-items:flex-start; }
+    .trust-row{ gap:20px; }
   }
-  .gradient-text {
-    background: var(--grad-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .btn-gradient {
-    background: var(--grad-primary);
-    color: #110803;
-    font-weight: 700;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 20px rgba(232, 51, 44, 0.25);
-  }
-  .btn-gradient:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(232, 51, 44, 0.4);
-    filter: brightness(1.08);
-  }
-  .card-glow {
-    background: #121014;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .card-glow:hover {
-    border-color: rgba(232, 51, 44, 0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(232, 51, 44, 0.15);
-  }
-  .glass-header {
-    background: rgba(9, 8, 10, 0.88);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .modal-backdrop {
-    background: rgba(5, 4, 6, 0.85);
-    backdrop-filter: blur(8px);
-  }
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  ::-webkit-scrollbar-track { background: #09080a; }
-  ::-webkit-scrollbar-thumb { background: #26222b; border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: #e8332c; }
 </style>
 </head>
-<body class="antialiased selection:bg-twt-red selection:text-white">
+<body>
 
-<div class="bg-[#040305] border-b border-twt-border text-xs text-twt-gray">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
-    <div class="flex items-center space-x-4 overflow-x-auto py-1 scrollbar-none">
-      <span class="flex items-center space-x-1.5 text-white font-medium">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>안산 성곡동 실시간 예약 가동 중</span>
-      </span>
-      <span class="text-twt-border">|</span>
-      <a href="#blog-section" class="hover:text-twt-orange transition-colors">최신 시공 포스팅 <span class="bg-twt-red text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded ml-1">NEW</span></a>
-      <span class="text-twt-border">|</span>
-      <a href="#location" class="hover:text-twt-orange transition-colors">매장 위치 & 길안내</a>
-    </div>
-    <div class="hidden md:flex items-center space-x-4">
-      <a href="tel:010-8888-6061" class="text-white hover:text-twt-orange font-semibold transition-colors">
-        <i class="fa-solid fa-phone mr-1.5 text-twt-red"></i>010-8888-6061
-      </a>
-      <span class="text-twt-border">|</span>
-      <span class="text-twt-gray"><i class="fa-regular fa-clock mr-1 text-twt-orange"></i> 평일 09:00 - 19:00</span>
-    </div>
+<div class="util-bar">
+  <div class="util-inner">
+    <a href="#">프롤로그</a><span class="util-sep">|</span>
+    <a href="#">블로그<span class="util-new">N</span></a><span class="util-sep">|</span>
+    <a href="#">업체소개</a><span class="util-sep">|</span>
+    <a href="#service">수입차 튜닝</a><span class="util-sep">|</span>
+    <a href="#gallery">튜닝제품소개<span class="util-new">N</span></a><span class="util-sep">|</span>
+    <a href="#">자동차 랩핑</a>
   </div>
 </div>
 
-<header class="sticky top-0 z-50 glass-header">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      <!-- Logo -->
-      <a href="#top" class="flex items-baseline space-x-3 group">
-        <span class="font-outfit font-black text-3xl tracking-wider text-white group-hover:text-twt-red transition-colors">
-          TWT<span class="text-twt-red">.</span>
-        </span>
-        <div class="flex flex-col">
-          <span class="font-display text-xs tracking-widest text-twt-gray uppercase group-hover:text-white transition-colors">THE WAY TUNING</span>
-          <span class="text-[10px] text-twt-orange font-semibold">수입차 튜닝 & 컨버전</span>
-        </div>
-      </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center space-x-8 font-medium text-sm text-twt-gray">
-        <a href="#services" class="hover:text-white transition-colors py-2">튜닝 서비스</a>
-        <a href="#blog-section" class="hover:text-white transition-colors py-2 flex items-center space-x-1.5">
-          <span>시공 갤러리/포스팅</span>
-          <span id="postCountBadge" class="bg-twt-panel border border-twt-border text-twt-orange text-xs px-2 py-0.5 rounded-full font-bold">0</span>
-        </a>
-        <a href="#process" class="hover:text-white transition-colors py-2">작업 진행절차</a>
-        <a href="#github-guide" class="hover:text-white transition-colors py-2"><i class="fa-brands fa-github text-base mr-1"></i>깃허브 이미지 연동법</a>
-        <a href="#location" class="hover:text-white transition-colors py-2">오시는 길</a>
-      </nav>
-
-      <!-- Right Action CTAs -->
-      <div class="flex items-center space-x-3">
-        <button onclick="openWriteModal()" class="hidden sm:inline-flex items-center space-x-2 bg-twt-panel hover:bg-neutral-800 border border-twt-border text-white text-xs font-semibold px-3.5 py-2.5 rounded-lg transition-colors">
-          <i class="fa-solid fa-pen-to-square text-twt-orange"></i>
-          <span>포스트 쓰기</span>
-        </button>
-
-        <a href="tel:010-8888-6061" class="btn-gradient text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-lg flex items-center space-x-2">
-          <i class="fa-solid fa-phone"></i>
-          <span>010-8888-6061</span>
-        </a>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-lg bg-twt-panel border border-twt-border text-white hover:text-twt-red transition-colors" aria-label="메뉴 열기">
-          <i class="fa-solid fa-bars text-lg"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile Drawer Menu -->
-  <div id="mobileDrawer" class="hidden lg:hidden border-b border-twt-border bg-twt-bg px-4 pt-3 pb-6 space-y-3">
-    <a href="#services" class="mobile-nav-link block py-2 px-3 rounded-lg hover:bg-twt-panel font-medium text-twt-gray hover:text-white">튜닝 서비스</a>
-    <a href="#blog-section" class="mobile-nav-link block py-2 px-3 rounded-lg hover:bg-twt-panel font-medium text-twt-gray hover:text-white">시공 갤러리/포스팅</a>
-    <a href="#process" class="mobile-nav-link block py-2 px-3 rounded-lg hover:bg-twt-panel font-medium text-twt-gray hover:text-white">작업 진행절차</a>
-    <a href="#github-guide" class="mobile-nav-link block py-2 px-3 rounded-lg hover:bg-twt-panel font-medium text-twt-gray hover:text-white">깃허브 연동 가이드</a>
-    <a href="#location" class="mobile-nav-link block py-2 px-3 rounded-lg hover:bg-twt-panel font-medium text-twt-gray hover:text-white">오시는 길</a>
-    <div class="pt-2 border-t border-twt-border flex space-x-2">
-      <button onclick="openWriteModal()" class="flex-1 bg-twt-panel border border-twt-border text-white text-xs font-semibold py-2.5 rounded-lg flex items-center justify-center space-x-1.5">
-        <i class="fa-solid fa-pen-to-square text-twt-orange"></i>
-        <span>새 포스팅 작성</span>
-      </button>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo-lockup">
+      <span class="sub">The Way Tuning</span>
+      <span class="big">TWT</span>
+    </a>
+    <nav class="links">
+      <a href="#top" class="active">홈</a>
+      <a href="#service">수입차튜닝</a>
+      <a href="#gallery">튜닝제품소개</a>
+      <a href="#process">작업순서</a>
+      <a href="#location">오시는길</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:010-8888-6061" class="btn-cta">010-8888-6061</a>
+      <button class="burger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <main id="top">
 
-  <section class="relative min-h-[85vh] flex items-center justify-center py-20 overflow-hidden border-b border-twt-border">
-    <!-- Hero Background Visual Effects -->
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_75%_20%,rgba(232,51,44,0.18),transparent)] pointer-events-none"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_40%_40%_at_20%_80%,rgba(255,138,30,0.1),transparent)] pointer-events-none"></div>
-    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px); background-size: 32px 32px;"></div>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          경기도 안산 · 수입차튜닝전문
+        </div>
+        <h1>믿을 수 있는 정비,<br>정직한 <span class="accent">TWT</span>가 책임집니다</h1>
+        <p class="desc">컨버전부터 배기튜닝, 커스텀 파츠, 사고수리까지 — 수입차 전문 정비 인력이 한 곳에서 진단하고 시공합니다.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">수입차 컨버전</span>
+          <span class="svc-tag">배기튜닝</span>
+          <span class="svc-tag">커스텀 단조휠</span>
+          <span class="svc-tag">커스텀 핸들</span>
+          <span class="svc-tag">카본파츠</span>
+          <span class="svc-tag">경정비</span>
+          <span class="svc-tag">보험 사고수리</span>
+        </div>
+        <div class="hero-cta-row">
+          <a href="tel:010-8888-6061" class="hero-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="num">010-8888-6061</span>
+          </a>
+          <div class="hero-addr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 1114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            경기도 안산시 단원구 성곡동 851-5
+          </div>
+        </div>
+        <div class="trust-row">
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 5h5l-4 4 2 6-5-3-5 3 2-6-4-4h5z"/></svg><div><b>15년</b><span>경력</span></div></div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div><b>2,400+</b><span>누적 작업건수</span></div></div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><b>100%</b><span>정품 부품</span></div></div>
+        </div>
+      </div>
 
-    <!-- Giant Typography Watermark -->
-    <div class="absolute right-0 top-1/2 -translate-y-1/2 text-[18vw] font-display font-black text-transparent select-none pointer-events-none opacity-5 tracking-tighter" style="-webkit-text-stroke: 2px #fff;">
-      TWT
+      <div class="hero-visual reveal">
+        <div class="ring"></div>
+        <div class="car-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 13l2-6h14l2 6M5 13h14v5H5z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/><path d="M7 7h10"/></svg>
+        </div>
+        <div class="chip chip-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><b>정품 인증</b><span>부품 사용</span></div></div>
+        <div class="chip chip-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><div><b>당일 진단</b><span>가능</span></div></div>
+      </div>
     </div>
+  </section>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Hero Text -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center space-x-2 bg-twt-panel border border-twt-border px-3.5 py-1.5 rounded-full text-xs font-bold text-twt-orange">
-            <span class="w-2 h-2 rounded-full bg-twt-red animate-ping"></span>
-            <span class="uppercase tracking-widest">경기도 안산 성곡동 · 수입차 튜닝 마스터</span>
-          </div>
+  <div class="photo-slider">
+    <div class="slider-track" id="sliderTrack">
+      <!-- 실제 시공 사진이 생기면 각 .slide-item 에 style="background-image:url('사진주소')" 를 추가하고
+           .slide-icon 대신 사진이 보이도록 해당 아이콘 div는 지워주세요 -->
+      <div class="slide-item" style="background:linear-gradient(150deg,#16324f,#0b1c2e);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div><div class="slide-caption">커스텀 단조휠</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#3a1210,#170807);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h8m0 0l4-4m-4 4l4 4m4-4h4"/></svg></div><div class="slide-caption">배기튜닝</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#2a2417,#14100a);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 4v4M8 8l2 2M16 8l-2 2"/></svg></div><div class="slide-caption">커스텀 핸들</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#1a1a1c,#050506);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h10M4 18h16"/></svg></div><div class="slide-caption">카본 파츠</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#183a2c,#0a1b14);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-6h14l2 6M5 13h14v5H5z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg></div><div class="slide-caption">수입차 컨버전</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#3a2412,#1a0f06);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><div class="slide-caption">보험 사고수리</div></div>
+      <!-- 무한 루프를 위한 복제본 -->
+      <div class="slide-item" style="background:linear-gradient(150deg,#16324f,#0b1c2e);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div><div class="slide-caption">커스텀 단조휠</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#3a1210,#170807);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h8m0 0l4-4m-4 4l4 4m4-4h4"/></svg></div><div class="slide-caption">배기튜닝</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#2a2417,#14100a);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 4v4M8 8l2 2M16 8l-2 2"/></svg></div><div class="slide-caption">커스텀 핸들</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#1a1a1c,#050506);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h10M4 18h16"/></svg></div><div class="slide-caption">카본 파츠</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#183a2c,#0a1b14);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-6h14l2 6M5 13h14v5H5z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg></div><div class="slide-caption">수입차 컨버전</div></div>
+      <div class="slide-item" style="background:linear-gradient(150deg,#3a2412,#1a0f06);"><div class="slide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><div class="slide-caption">보험 사고수리</div></div>
+    </div>
+  </div>
 
-          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase leading-[1.05] tracking-tight">
-            압도적 퍼포먼스<br />
-            <span class="gradient-text">완벽한 스타일의 완성</span><br />
-            THE WAY TUNING
-          </h1>
+  <div class="quicknav">
+    <a class="qn-item" href="#service"><div class="qn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6"/></svg></div><span class="qn-label">업체소개</span></a>
+    <a class="qn-item" href="#service"><div class="qn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13l2-6h14l2 6M5 13h14v5H5z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg></div><span class="qn-label">수입차튜닝</span></a>
+    <a class="qn-item" href="#gallery"><div class="qn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><span class="qn-label">튜닝제품소개</span></a>
+    <a class="qn-item" href="#location"><div class="qn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 1114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><span class="qn-label">오시는길</span></a>
+  </div>
 
-          <p class="text-twt-gray text-base sm:text-lg max-w-xl leading-relaxed">
-            수입차 바디킷 컨버전, 커스텀 가변 배기, 단조휠, 카본 파츠 시공부터 정밀 보험 사고수리까지 — 전담 전문 테크니션의 하이엔드 원스톱 튜닝 솔루션을 경험하세요.
-          </p>
+  <section id="service">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-eyebrow">Service</div>
+        <h2>TWT 취급 서비스</h2>
+        <p>수입차 컨버전부터 보험 사고수리까지, 한 곳에서 끝냅니다.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card reveal"><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13l2-6h14l2 6M5 13h14v5H5z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg></div><div class="svc-title">수입차 컨버전</div><div class="svc-desc">해외 사양·트림 변경 및 컨버전 작업</div></div>
+        <div class="svc-card reveal"><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h8m0 0l4-4m-4 4l4 4m4-4h4"/></svg></div><div class="svc-title">배기튜닝</div><div class="svc-desc">캣백·발브 배기 등 사운드 & 성능 개선</div></div>
+        <div class="svc-card reveal"><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div><div class="svc-title">커스텀 단조휠</div><div class="svc-desc">사이즈·컬러 맞춤 단조휠 제작 및 장착</div></div>
+        <div class="svc-card reveal"><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4v4M8 8l2 2M16 8l-2 2"/></svg></div><div class="svc-title">커스텀 핸들</div><div class="svc-desc">가죽·스티치·패들 커스텀 스티어링휠</div></div>
+        <div class="svc-card reveal"><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h16"/></svg></div><div class="svc-title">각종 카본파츠</div><div class="svc-desc">스포일러·미러캡 등 카본 파츠 시공</div></div>
+        <div class="svc-card reveal"><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 5h5l-4 4 2 6-5-3-5 3 2-6-4-4h5z"/></svg></div><div class="svc-title">경정비</div><div class="svc-desc">오일·소모품 등 기본 정비 일체</div></div>
+        <div class="svc-card reveal"><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><div class="svc-title">보험 사고수리</div><div class="svc-desc">보험 접수부터 수리·도색까지 원스톱</div></div>
+        <div class="svc-card reveal"><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="svc-title">출고 검수</div><div class="svc-desc">모든 작업은 최종 점검 후 인도됩니다</div></div>
+      </div>
+    </div>
+  </section>
 
-          <!-- Service Pills -->
-          <div class="flex flex-wrap gap-2 pt-1">
-            <span class="bg-neutral-900 border border-twt-border text-xs font-medium px-3 py-1.5 rounded-full text-neutral-300">수입차 바디킷 컨버전</span>
-            <span class="bg-neutral-900 border border-twt-border text-xs font-medium px-3 py-1.5 rounded-full text-neutral-300">커스텀 가변 배기</span>
-            <span class="bg-neutral-900 border border-twt-border text-xs font-medium px-3 py-1.5 rounded-full text-neutral-300">맞춤 제작 단조휠</span>
-            <span class="bg-neutral-900 border border-twt-border text-xs font-medium px-3 py-1.5 rounded-full text-neutral-300">커스텀 리얼 카본</span>
-            <span class="bg-neutral-900 border border-twt-border text-xs font-medium px-3 py-1.5 rounded-full text-neutral-300">수입차 1:1 사고수리</span>
-          </div>
+  <section id="gallery" style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-eyebrow">Blog</div>
+        <h2>튜닝 작업 갤러리</h2>
+        <p>블로그에 새 글을 올리면 아래에 최신 4개가 자동으로 표시됩니다.</p>
+      </div>
+      <div class="gal-grid" id="blogGrid">
+        <!-- BLOG_RSS_URL을 설정하지 않으면 아래 기본 카드가 그대로 보입니다 -->
+        <div class="gal-card reveal"><div class="gal-body"><div class="gal-tag">Wheel</div><div class="gal-title">단조휠 컬러 커스텀</div></div></div>
+        <div class="gal-card reveal"><div class="gal-body"><div class="gal-tag">Exhaust</div><div class="gal-title">발브 배기 시스템</div></div></div>
+        <div class="gal-card reveal"><div class="gal-body"><div class="gal-tag">Interior</div><div class="gal-title">커스텀 스티어링휠</div></div></div>
+        <div class="gal-card reveal"><div class="gal-body"><div class="gal-tag">Carbon</div><div class="gal-title">카본 바디파츠</div></div></div>
+      </div>
+    </div>
+  </section>
 
-          <!-- Hero Action Buttons -->
-          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
-            <a href="tel:010-8888-6061" class="btn-gradient text-center px-8 py-4 rounded-xl flex items-center justify-center space-x-3 text-base">
-              <i class="fa-solid fa-phone text-lg"></i>
-              <span class="font-bold">실시간 견적 문의 (010-8888-6061)</span>
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-eyebrow">Process</div>
+        <h2>작업 진행 순서</h2>
+        <p>상담부터 출고까지 4단계로 진행됩니다.</p>
+      </div>
+      <div class="process-strip">
+        <div class="proc-item reveal"><div class="proc-num">01</div><div class="proc-title">상담 & 견적</div><div class="proc-desc">전화 또는 방문 상담 후 원하는 작업과 예산을 확인합니다.</div></div>
+        <div class="proc-item reveal"><div class="proc-num">02</div><div class="proc-title">부품 확정</div><div class="proc-desc">파츠·컬러·사양을 함께 결정하고 입고 일정을 안내합니다.</div></div>
+        <div class="proc-item reveal"><div class="proc-num">03</div><div class="proc-title">시공</div><div class="proc-desc">숙련 테크니션이 직접 작업하며 진행 상황을 공유합니다.</div></div>
+        <div class="proc-item reveal"><div class="proc-num">04</div><div class="proc-title">검수 & 출고</div><div class="proc-desc">최종 점검과 시운전 후 안전하게 출고해 드립니다.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <div class="wrap cta-inner">
+      <div>
+        <h3>지금 바로 전화 상담하세요</h3>
+        <p>견적 문의부터 예약까지 전화 한 통이면 충분합니다.</p>
+      </div>
+      <a href="tel:010-8888-6061" class="cta-call">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="num">010-8888-6061</span>
+      </a>
+    </div>
+  </div>
+
+  <section id="location">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-eyebrow">Location</div>
+        <h2>오시는 길</h2>
+      </div>
+      <div class="loc-grid">
+        <div class="loc-info-panel reveal">
+          <h3>지도 앱에서 바로 찾기</h3>
+          <p>카카오맵 또는 네이버지도 앱에서 더웨이튜닝(TWT) 위치와 길찾기를 바로 확인하실 수 있습니다.</p>
+          <div class="map-links">
+            <a class="map-btn kakao" href="https://map.kakao.com/link/search/경기도 안산시 단원구 성곡동 851-5 더웨이튜닝" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.5-7-11a7 7 0 1114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              카카오맵에서 보기
             </a>
-            <a href="#blog-section" class="bg-twt-panel hover:bg-neutral-800 border border-twt-border text-center px-6 py-4 rounded-xl font-semibold text-white transition-colors flex items-center justify-center space-x-2">
-              <i class="fa-solid fa-images text-twt-orange"></i>
-              <span>최신 시공 사례 보기</span>
-            </a>
-          </div>
-
-          <!-- Quick Info Cards -->
-          <div class="pt-6 border-t border-twt-border/50 grid grid-cols-3 gap-4 text-center sm:text-left">
-            <div>
-              <div class="font-outfit text-2xl font-black text-white">1,500<span class="text-twt-red">+</span></div>
-              <div class="text-xs text-twt-gray mt-0.5">수입차 시공 실적</div>
-            </div>
-            <div>
-              <div class="font-outfit text-2xl font-black text-white">100<span class="text-twt-orange">%</span></div>
-              <div class="text-xs text-twt-gray mt-0.5">맞춤 정밀 피팅</div>
-            </div>
-            <div>
-              <div class="font-outfit text-2xl font-black text-white">안산 시화</div>
-              <div class="text-xs text-twt-gray mt-0.5">단원구 성곡동 위치</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hero Visual Showcase -->
-        <div class="lg:col-span-5">
-          <div class="relative rounded-2xl overflow-hidden border border-twt-border card-glow p-2 bg-neutral-950">
-            <div class="relative aspect-[4/3] rounded-xl overflow-hidden group">
-              <img id="heroImage" src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop" alt="THE WAY TUNING 수입차 튜닝" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
-                <span class="text-twt-orange font-bold text-xs uppercase tracking-widest mb-1">TWT Featured Work</span>
-                <h3 class="text-white font-bold text-xl">Porsche & AMG High-Performance Tuning</h3>
-                <p class="text-twt-gray text-xs mt-1">완벽한 단차 맞춤과 사운드 메이킹</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="py-24 border-b border-twt-border bg-[#0b0a0d]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-twt-red font-bold text-xs uppercase tracking-widest">Our Specialty Services</span>
-        <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase mt-2">TWT 수입차 전문 솔루션</h2>
-        <p class="text-twt-gray text-sm sm:text-base mt-4">단순 장착을 넘어 원가 절감 없는 정품급 피팅과 완벽한 내구성을 보장합니다.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Service Item 1 -->
-        <div class="card-glow rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-twt-red/10 border border-twt-red/30 flex items-center justify-center text-twt-red text-xl mb-5">
-              <i class="fa-solid fa-car-rear"></i>
-            </div>
-            <h3 class="font-bold text-lg text-white mb-2">수입차 바디킷 컨버전</h3>
-            <p class="text-twt-gray text-xs leading-relaxed">
-              신형 룩, LCI, AMG / M / RS 라인업 최신 컨버전. 순정 감성의 완벽한 단차 정밀 시공.
-            </p>
-          </div>
-          <span class="text-[11px] text-twt-orange font-semibold mt-6 flex items-center">
-            <span>시공 사례 포스팅 보기</span> <i class="fa-solid fa-arrow-right text-xs ml-1.5"></i>
-          </span>
-        </div>
-
-        <!-- Service Item 2 -->
-        <div class="card-glow rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-twt-orange/10 border border-twt-orange/30 flex items-center justify-center text-twt-orange text-xl mb-5">
-              <i class="fa-solid fa-gauge-high"></i>
-            </div>
-            <h3 class="font-bold text-lg text-white mb-2">커스텀 가변 배기 시스템</h3>
-            <p class="text-twt-gray text-xs leading-relaxed">
-              캣백, 가변 밸브 배기, 튜닝 파이프 및 매니폴드. 중저음 웅장한 레이싱 사운드 완성.
-            </p>
-          </div>
-          <span class="text-[11px] text-twt-orange font-semibold mt-6 flex items-center">
-            <span>시공 사례 포스팅 보기</span> <i class="fa-solid fa-arrow-right text-xs ml-1.5"></i>
-          </span>
-        </div>
-
-        <!-- Service Item 3 -->
-        <div class="card-glow rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-twt-red/10 border border-twt-red/30 flex items-center justify-center text-twt-red text-xl mb-5">
-              <i class="fa-solid fa-compact-disc"></i>
-            </div>
-            <h3 class="font-bold text-lg text-white mb-2">맞춤 커스텀 단조휠</h3>
-            <p class="text-twt-gray text-xs leading-relaxed">
-              차종별 옵셋 정밀 계산 맞춤 단조휠. 인치업, 캘리퍼 우회, 프리미엄 컬러 파우더코팅.
-            </p>
-          </div>
-          <span class="text-[11px] text-twt-orange font-semibold mt-6 flex items-center">
-            <span>시공 사례 포스팅 보기</span> <i class="fa-solid fa-arrow-right text-xs ml-1.5"></i>
-          </span>
-        </div>
-
-        <!-- Service Item 4 -->
-        <div class="card-glow rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-twt-orange/10 border border-twt-orange/30 flex items-center justify-center text-twt-orange text-xl mb-5">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h3 class="font-bold text-lg text-white mb-2">보험 사고수리 & 정비</h3>
-            <p class="text-twt-gray text-xs leading-relaxed">
-              수입차 전문 판금/도색, 보험 대물 접수 원스톱 처리. 미세 단차 교정과 최신 수리 기술.
-            </p>
-          </div>
-          <span class="text-[11px] text-twt-orange font-semibold mt-6 flex items-center">
-            <span>시공 사례 포스팅 보기</span> <i class="fa-solid fa-arrow-right text-xs ml-1.5"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="blog-section" class="py-24 bg-twt-bg relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <!-- Section Header with Controls -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-        <div>
-          <div class="flex items-center space-x-2">
-            <span class="text-twt-orange font-bold text-xs uppercase tracking-widest">Interactive Portfolio Board</span>
-            <span class="bg-twt-red/20 text-twt-red text-[10px] font-bold px-2 py-0.5 rounded-full">실시간 업데이트</span>
-          </div>
-          <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase mt-2">TWT 시공 포스팅 & 갤러리</h2>
-          <p class="text-twt-gray text-sm mt-2">최신 작업 내역과 차종별 튜닝 리포트를 직접 등록하고 확인하세요.</p>
-        </div>
-
-        <!-- Action Bar: Search & New Post Button -->
-        <div class="flex flex-wrap items-center gap-3">
-          <!-- Search Box -->
-          <div class="relative min-w-[220px]">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-twt-gray text-xs"></i>
-            <input type="text" id="searchInput" oninput="renderPosts()" placeholder="차종, 튜닝항목 검색..." class="w-full bg-twt-panel border border-twt-border rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder-twt-gray focus:outline-none focus:border-twt-orange transition-colors" />
-          </div>
-
-          <!-- Write Post Trigger Button -->
-          <button onclick="openWriteModal()" class="btn-gradient px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2">
-            <i class="fa-solid fa-plus"></i>
-            <span>새 포스트 작성</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Category Filter Tabs -->
-      <div class="flex items-center space-x-2 overflow-x-auto pb-4 mb-8 scrollbar-none border-b border-twt-border/50" id="categoryTabs">
-        <!-- Javascript renders categories here -->
-      </div>
-
-      <!-- Post Cards Grid Container -->
-      <div id="postsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Dynamic Post Cards will be injected by JavaScript -->
-      </div>
-
-      <!-- Empty State Indicator -->
-      <div id="emptyPostsState" class="hidden py-16 text-center border border-dashed border-twt-border rounded-2xl bg-twt-panel/50">
-        <i class="fa-solid fa-folder-open text-4xl text-twt-gray mb-3"></i>
-        <h3 class="text-white font-bold text-lg">해당 조건의 포스트가 없습니다.</h3>
-        <p class="text-twt-gray text-xs mt-1">다른 검색어나 카테고리를 선택하거나, 새 시공 포스트를 추가해 보세요.</p>
-        <button onclick="openWriteModal()" class="mt-4 bg-twt-red text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-twt-red/80 transition-colors">
-          첫 포스팅 등록하기
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="github-guide" class="py-20 bg-[#0d0b0f] border-y border-twt-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-twt-panel border border-twt-border rounded-3xl p-8 lg:p-12 relative overflow-hidden">
-        <div class="absolute -right-10 -bottom-10 text-[15rem] text-white/5 font-black pointer-events-none">
-          <i class="fa-brands fa-github"></i>
-        </div>
-
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-7 space-y-4">
-            <div class="inline-flex items-center space-x-2 bg-neutral-900 border border-twt-border px-3 py-1 rounded-full text-xs text-twt-orange font-semibold">
-              <i class="fa-brands fa-github"></i>
-              <span>GitHub & External Image CDN Guide</span>
-            </div>
-            <h2 class="font-display text-2xl sm:text-4xl font-extrabold uppercase">
-              깃허브(GitHub) 이미지 주소 삽입법
-            </h2>
-            <p class="text-twt-gray text-xs sm:text-sm leading-relaxed">
-              본 웹사이트 포스팅 시스템은 깃허브 저장소에 업로드한 이미지 링크나 일반 Web Image URL을 그대로 사용할 수 있습니다. 아래 구조로 URL을 입력하시면 빠른 로딩의 CDN으로 고화질 이미지가 노출됩니다.
-            </p>
-
-            <!-- Guide Steps -->
-            <div class="space-y-3 pt-2 text-xs">
-              <div class="flex items-start space-x-3 bg-neutral-950/80 p-3.5 rounded-xl border border-twt-border">
-                <span class="w-5 h-5 rounded-full bg-twt-red text-white flex items-center justify-center font-bold text-[10px] shrink-0">1</span>
-                <div>
-                  <strong class="text-white block">GitHub 저장소에 사진 올리기</strong>
-                  <span class="text-twt-gray">본인의 깃허브 레포지토리(예: <code class="text-twt-orange">my-car-blog/images/bmw.jpg</code>)에 이미지를 올립니다.</span>
-                </div>
-              </div>
-
-              <div class="flex items-start space-x-3 bg-neutral-950/80 p-3.5 rounded-xl border border-twt-border">
-                <span class="w-5 h-5 rounded-full bg-twt-orange text-white flex items-center justify-center font-bold text-[10px] shrink-0">2</span>
-                <div>
-                  <strong class="text-white block">jsDelivr CDN 또는 Raw URL 주소 복사</strong>
-                  <span class="text-twt-gray">형식: <code class="text-emerald-400">https://cdn.jsdelivr.net/gh/유저이름/저장소명@main/이미지 경로.jpg</code></span>
-                </div>
-              </div>
-
-              <div class="flex items-start space-x-3 bg-neutral-950/80 p-3.5 rounded-xl border border-twt-border">
-                <span class="w-5 h-5 rounded-full bg-neutral-700 text-white flex items-center justify-center font-bold text-[10px] shrink-0">3</span>
-                <div>
-                  <strong class="text-white block">포스트 등록 시 '대표 이미지 URL'에 붙여넣기</strong>
-                  <span class="text-twt-gray">작성 창의 URL 입력칸에 대입하면 실시간으로 이미지가 내장되어 렌더링됩니다.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 bg-neutral-950 border border-twt-border rounded-2xl p-6">
-            <h4 class="text-xs font-bold text-twt-orange uppercase tracking-wider mb-3">샘플 CDN 주소 테스트</h4>
-            <div class="space-y-3 text-xs">
-              <div>
-                <label class="text-twt-gray block mb-1">Unsplash 샘플 (즉시 테스트용):</label>
-                <div class="flex items-center space-x-2">
-                  <input type="text" readonly value="https://images.unsplash.com/photo-1617814076367-b759c7d7e738" class="w-full bg-neutral-900 border border-twt-border rounded-lg px-3 py-2 text-neutral-300 font-mono text-[11px]" />
-                  <button onclick="copyToClipboard('https://images.unsplash.com/photo-1617814076367-b759c7d7e738')" class="bg-twt-panel hover:bg-neutral-800 text-white px-3 py-2 rounded-lg border border-twt-border shrink-0">
-                    <i class="fa-regular fa-copy"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="pt-2 border-t border-twt-border">
-                <span class="text-twt-gray block mb-2">포스트 데이터 JSON 백업/복원:</span>
-                <div class="flex space-x-2">
-                  <button onclick="exportPostsData()" class="flex-1 bg-neutral-900 hover:bg-neutral-800 border border-twt-border text-white py-2 rounded-lg text-xs font-semibold">
-                    <i class="fa-solid fa-download mr-1"></i> 포스트 백업 다운로드
-                  </button>
-                  <button onclick="document.getElementById('importFileInput').click()" class="flex-1 bg-neutral-900 hover:bg-neutral-800 border border-twt-border text-twt-orange py-2 rounded-lg text-xs font-semibold">
-                    <i class="fa-solid fa-upload mr-1"></i> 포스트 복원
-                  </button>
-                  <input type="file" id="importFileInput" onchange="importPostsData(event)" accept=".json" class="hidden" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="process" class="py-24 bg-twt-bg border-b border-twt-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-twt-red font-bold text-xs uppercase tracking-widest">Transparent Workflow</span>
-        <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase mt-2">TWT 시공 진행 순서</h2>
-        <p class="text-twt-gray text-sm mt-3">고객님의 차량이 입고되어 완벽히 출고될 때까지 4단계 실시간 공유 시스템으로 진행됩니다.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Step 1 -->
-        <div class="bg-twt-panel border border-twt-border rounded-2xl p-6 relative overflow-hidden group">
-          <span class="font-display text-5xl font-black text-twt-red/20 absolute right-4 top-4 group-hover:text-twt-red/40 transition-colors">01</span>
-          <div class="text-twt-orange text-lg mb-4"><i class="fa-solid fa-comments"></i></div>
-          <h3 class="font-bold text-white text-lg mb-2">1:1 상담 & 정밀 견적</h3>
-          <p class="text-twt-gray text-xs leading-relaxed">
-            전화 또는 매장 방문 상담을 통해 희망하는 스펙, 사양, 파츠 브랜드 및 예산 맞춤 견적을 산출합니다.
-          </p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="bg-twt-panel border border-twt-border rounded-2xl p-6 relative overflow-hidden group">
-          <span class="font-display text-5xl font-black text-twt-orange/20 absolute right-4 top-4 group-hover:text-twt-orange/40 transition-colors">02</span>
-          <div class="text-twt-orange text-lg mb-4"><i class="fa-solid fa-boxes-packing"></i></div>
-          <h3 class="font-bold text-white text-lg mb-2">파츠 검수 & 입고 예약</h3>
-          <p class="text-twt-gray text-xs leading-relaxed">
-            해외 수입 정품 파츠 및 커스텀 부품 사전 1차 단차 검수 후 고객님의 입고 스케줄을 조율합니다.
-          </p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="bg-twt-panel border border-twt-border rounded-2xl p-6 relative overflow-hidden group">
-          <span class="font-display text-5xl font-black text-twt-red/20 absolute right-4 top-4 group-hover:text-twt-red/40 transition-colors">03</span>
-          <div class="text-twt-orange text-lg mb-4"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <h3 class="font-bold text-white text-lg mb-2">전문 테크니션 시공</h3>
-          <p class="text-twt-gray text-xs leading-relaxed">
-            수입차 전담 테크니션이 직접 매뉴얼대로 작업하며 주요 진행 상황 사진을 실시간 전송해 드립니다.
-          </p>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="bg-twt-panel border border-twt-border rounded-2xl p-6 relative overflow-hidden group">
-          <span class="font-display text-5xl font-black text-twt-orange/20 absolute right-4 top-4 group-hover:text-twt-orange/40 transition-colors">04</span>
-          <div class="text-twt-orange text-lg mb-4"><i class="fa-solid fa-flag-checkered"></i></div>
-          <h3 class="font-bold text-white text-lg mb-2">시운전 검수 & 최종 출고</h3>
-          <p class="text-twt-gray text-xs leading-relaxed">
-            하부 및 결속 상태, 로드 테스트, 휠 밸런스 점검 등 최종 품질 검수를 거친 후 안심 인도해 드립니다.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="location" class="py-24 bg-[#0b0a0d]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-twt-red font-bold text-xs uppercase tracking-widest">Visit Our Workshop</span>
-        <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase mt-2">TWT 오시는 길</h2>
-        <p class="text-twt-gray text-sm mt-3">경기도 안산시 단원구 성곡동 위치. 방문 전 전화 예약 시 대기 없는 정밀 상담이 가능합니다.</p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        <!-- Location Map Simulation Card -->
-        <div class="lg:col-span-7 bg-twt-panel border border-twt-border rounded-3xl overflow-hidden flex flex-col justify-between p-8 relative min-h-[360px]" style="background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 24px 24px;">
-          <div class="relative z-10 flex justify-between items-start">
-            <div class="bg-black/80 backdrop-filter blur-md border border-twt-border p-4 rounded-2xl">
-              <span class="text-twt-orange font-bold text-xs block">더웨이튜닝 (THE WAY TUNING)</span>
-              <h4 class="text-white font-extrabold text-base mt-0.5">경기도 안산시 단원구 성곡동 851-5</h4>
-            </div>
-            <a href="tel:010-8888-6061" class="btn-gradient text-xs px-4 py-2.5 rounded-xl font-bold flex items-center space-x-1.5">
-              <i class="fa-solid fa-phone"></i>
-              <span>전화걸기</span>
+            <a class="map-btn naver" href="https://map.naver.com/v5/search/경기도 안산시 단원구 성곡동 851-5 더웨이튜닝" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.5-7-11a7 7 0 1114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              네이버지도에서 보기
             </a>
           </div>
-
-          <!-- Pin Visual Center -->
-          <div class="my-12 text-center relative z-10">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-twt-red/20 border-2 border-twt-red text-twt-red text-2xl animate-bounce">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <div class="text-xs text-white font-semibold mt-2 bg-black/60 px-3 py-1 rounded-full inline-block">
-              안산 시화공단 성곡동 851-5
-            </div>
-          </div>
-
-          <!-- Navigation Shortcut Buttons -->
-          <div class="grid grid-cols-3 gap-3 relative z-10 pt-4 border-t border-twt-border">
-            <button onclick="openKakaoMap()" class="bg-amber-400 hover:bg-amber-500 text-neutral-900 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition-colors">
-              <i class="fa-solid fa-map-location-dot"></i>
-              <span>카카오맵</span>
-            </button>
-            <button onclick="openNaverMap()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition-colors">
-              <i class="fa-solid fa-route"></i>
-              <span>네이버지도</span>
-            </button>
-            <button onclick="copyToClipboard('경기도 안산시 단원구 성곡동 851-5')" class="bg-neutral-800 hover:bg-neutral-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition-colors">
-              <i class="fa-regular fa-copy"></i>
-              <span>주소복사</span>
-            </button>
-          </div>
         </div>
-
-        <!-- Contact Detail Info -->
-        <div class="lg:col-span-5 bg-twt-panel border border-twt-border rounded-3xl p-8 flex flex-col justify-between space-y-6">
-          <div>
-            <h3 class="font-display text-2xl font-bold uppercase text-white mb-6 border-b border-twt-border pb-4">
-              워크숍 매장 정보
-            </h3>
-
-            <div class="space-y-5 text-sm">
-              <div class="flex items-start space-x-4">
-                <div class="w-10 h-10 rounded-xl bg-twt-red/10 border border-twt-red/30 text-twt-red flex items-center justify-center shrink-0">
-                  <i class="fa-solid fa-location-pin"></i>
-                </div>
-                <div>
-                  <div class="text-twt-gray text-xs font-medium">도로명 주소</div>
-                  <div class="text-white font-semibold mt-0.5">경기도 안산시 단원구 성곡동 851-5</div>
-                </div>
-              </div>
-
-              <div class="flex items-start space-x-4">
-                <div class="w-10 h-10 rounded-xl bg-twt-orange/10 border border-twt-orange/30 text-twt-orange flex items-center justify-center shrink-0">
-                  <i class="fa-solid fa-phone"></i>
-                </div>
-                <div>
-                  <div class="text-twt-gray text-xs font-medium">직통 문의 및 24h 예약</div>
-                  <a href="tel:010-8888-6061" class="font-display text-2xl font-black text-twt-orange hover:underline block mt-0.5">010-8888-6061</a>
-                </div>
-              </div>
-
-              <div class="flex items-start space-x-4">
-                <div class="w-10 h-10 rounded-xl bg-neutral-800 border border-twt-border text-white flex items-center justify-center shrink-0">
-                  <i class="fa-regular fa-clock"></i>
-                </div>
-                <div>
-                  <div class="text-twt-gray text-xs font-medium">영업시간 안내</div>
-                  <div class="text-white font-medium text-xs mt-1 space-y-1">
-                    <p>월 - 금요일: 09:00 - 19:00</p>
-                    <p>토요일: 09:00 - 15:00 (사전예약제)</p>
-                    <p class="text-twt-red font-semibold">일요일 및 공휴일: 휴무 (전화상담 가능)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="loc-card reveal">
+          <div class="loc-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 1114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><div class="lk">주소</div><div class="lv">경기도 안산시 단원구 성곡동 851-5</div></div>
           </div>
-
-          <!-- CTA Box -->
-          <div class="bg-neutral-950 border border-twt-border rounded-2xl p-4 flex items-center justify-between">
-            <div>
-              <div class="text-xs font-bold text-white">사고 수리 & 대차 서비스 문의</div>
-              <div class="text-[11px] text-twt-gray">수입차 전 차종 보험 접수 대행 가능</div>
-            </div>
-            <a href="tel:010-8888-6061" class="btn-gradient text-xs px-3.5 py-2 rounded-lg font-bold">
-              연결하기
-            </a>
+          <div class="loc-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><div class="lk">전화</div><div class="lv strong">010-8888-6061</div></div>
+          </div>
+          <div class="loc-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div><div class="lk">운영시간</div><div class="lv">평일 09:00–19:00 · 토요일 09:00–15:00 · 일요일 휴무</div></div>
           </div>
         </div>
       </div>
@@ -639,545 +412,87 @@
 
 </main>
 
-<footer class="bg-[#040305] border-t border-twt-border py-12 text-xs text-twt-gray">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="space-y-2 text-center md:text-left">
-        <div class="flex items-center justify-center md:justify-start space-x-2">
-          <span class="font-outfit font-black text-xl text-white">TWT. THE WAY TUNING</span>
-          <span class="bg-twt-panel border border-twt-border text-twt-orange text-[10px] font-bold px-2 py-0.5 rounded">안산 수입차튜닝</span>
-        </div>
-        <p class="text-twt-gray">상호명: 더웨이튜닝 (THE WAY TUNING) | 대표전화: 010-8888-6061</p>
-        <p class="text-twt-gray">주소: 경기도 안산시 단원구 성곡동 851-5 | 수입차 바디킷 · 배기 · 단조휠 · 사고수리</p>
-      </div>
-
-      <div class="text-center md:text-right space-y-2">
-        <div class="flex justify-center md:justify-end space-x-4">
-          <a href="#top" class="hover:text-white transition-colors">맨 위로</a>
-          <span>·</span>
-          <a href="#blog-section" class="hover:text-white transition-colors">시공 게시판</a>
-          <span>·</span>
-          <a href="#github-guide" class="hover:text-white transition-colors">깃허브 연동안내</a>
-        </div>
-        <p class="text-neutral-600">© 2026 THE WAY TUNING. All rights reserved.</p>
-      </div>
-    </div>
+<footer>
+  <div class="wrap footer-inner">
+    <div class="f-logo">TWT · THE WAY TUNING</div>
+    <div class="f-meta">더웨이튜닝 · 경기도 안산시 단원구 성곡동 851-5 · 010-8888-6061<br>© 2026 THE WAY TUNING. All rights reserved.</div>
   </div>
 </footer>
 
-<div id="writeModal" onclick="if(event.target === this) closeWriteModal()" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-twt-card border border-twt-border rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl my-8">
-    <div class="bg-twt-panel px-6 py-4 border-b border-twt-border flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid fa-pen-to-square text-twt-orange"></i>
-        <h3 id="modalFormTitle" class="font-bold text-white text-base">새 시공 포스트 작성</h3>
-      </div>
-      <button onclick="closeWriteModal()" class="text-twt-gray hover:text-white p-2 text-lg">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-
-    <form id="postForm" onsubmit="handleFormSubmit(event)" class="p-6 space-y-4">
-      <input type="hidden" id="postIdInput" value="" />
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <!-- Post Title -->
-        <div class="sm:col-span-2">
-          <label class="block text-xs font-bold text-neutral-300 mb-1">포스트 제목 <span class="text-twt-red">*</span></label>
-          <input type="text" id="postTitle" required placeholder="예: [BMW G30] LCI M 스포츠 바디킷 컨버전 및 커스텀 가변배기 시공" class="w-full bg-twt-panel border border-twt-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-twt-orange" />
-        </div>
-
-        <!-- Car Model -->
-        <div>
-          <label class="block text-xs font-bold text-neutral-300 mb-1">차종 / 모델 <span class="text-twt-red">*</span></label>
-          <input type="text" id="postCarModel" required placeholder="예: Porsche 911 GT3 / BMW M4" class="w-full bg-twt-panel border border-twt-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-twt-orange" />
-        </div>
-
-        <!-- Category -->
-        <div>
-          <label class="block text-xs font-bold text-neutral-300 mb-1">시공 카테고리 <span class="text-twt-red">*</span></label>
-          <select id="postCategory" required class="w-full bg-twt-panel border border-twt-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-twt-orange">
-            <option value="수입차 컨버전">수입차 컨버전</option>
-            <option value="배기튜닝">배기튜닝</option>
-            <option value="커스텀 단조휠">커스텀 단조휠</option>
-            <option value="커스텀 핸들">커스텀 핸들</option>
-            <option value="카본파츠">카본파츠</option>
-            <option value="보험 사고수리">보험 사고수리</option>
-          </select>
-        </div>
-
-        <!-- Image URL -->
-        <div class="sm:col-span-2">
-          <div class="flex items-center justify-between mb-1">
-            <label class="text-xs font-bold text-neutral-300">대표 이미지 URL (GitHub / CDN / 외부 URL) <span class="text-twt-red">*</span></label>
-            <span onclick="setSampleImageUrl()" class="text-[11px] text-twt-orange hover:underline cursor-pointer"><i class="fa-regular fa-image mr-1"></i>샘플 이미지 넣기</span>
-          </div>
-          <input type="url" id="postImageUrl" required placeholder="https://cdn.jsdelivr.net/gh/user/repo@main/car.jpg" class="w-full bg-twt-panel border border-twt-border rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-twt-orange" />
-          <p class="text-[10px] text-twt-gray mt-1">※ GitHub Raw, jsDelivr CDN 또는 Unsplash 고화질 URL을 붙여넣으세요.</p>
-        </div>
-
-        <!-- Tags -->
-        <div class="sm:col-span-2">
-          <label class="block text-xs font-bold text-neutral-300 mb-1">태그 (쉼표로 구분)</label>
-          <input type="text" id="postTags" placeholder="안산튜닝, 바디킷, 커스텀배기, M퍼포먼스" class="w-full bg-twt-panel border border-twt-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-twt-orange" />
-        </div>
-
-        <!-- Content Body -->
-        <div class="sm:col-span-2">
-          <label class="block text-xs font-bold text-neutral-300 mb-1">시공 상세 작업 내역 내용 <span class="text-twt-red">*</span></label>
-          <textarea id="postContent" rows="5" required placeholder="작업 내용, 소요 시간, 사용 파츠 및 시공 포인트를 상세히 적어주세요..." class="w-full bg-twt-panel border border-twt-border rounded-xl p-4 text-xs text-white focus:outline-none focus:border-twt-orange leading-relaxed"></textarea>
-        </div>
-      </div>
-
-      <!-- Form Actions -->
-      <div class="pt-4 border-t border-twt-border flex items-center justify-end space-x-3">
-        <button type="button" onclick="closeWriteModal()" class="px-4 py-2.5 rounded-xl border border-twt-border text-xs text-twt-gray hover:text-white transition-colors">
-          취소
-        </button>
-        <button type="submit" class="btn-gradient px-6 py-2.5 rounded-xl text-xs font-bold">
-          포스팅 저장하기
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div id="detailModal" onclick="if(event.target === this) closeDetailModal()" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-twt-card border border-twt-border rounded-3xl w-full max-w-3xl overflow-hidden shadow-2xl my-8 relative">
-    <button onclick="closeDetailModal()" class="absolute right-4 top-4 z-10 w-9 h-9 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-twt-red transition-colors" title="닫기 (ESC)">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-
-    <div id="detailModalContent">
-      <!-- Dynamic content rendered by JS -->
-    </div>
-  </div>
-</div>
-
-<div id="toast" class="fixed bottom-6 right-6 z-50 bg-twt-panel border border-twt-red text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-2">
-  <i class="fa-solid fa-circle-check text-twt-orange text-base"></i>
-  <span id="toastMsg">알림 메시지</span>
-</div>
-
 <script>
-  // Initial Mock Sample Posts Data
-  const INITIAL_POSTS = [
-    {
-      id: 'post-1',
-      title: '[Porsche 911 GT3] 커스텀 가변배기 & 단조휠 시공 완료',
-      carModel: 'Porsche 911 GT3',
-      category: '배기튜닝',
-      imageUrl: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=1200&auto=format&fit=crop',
-      tags: ['포르쉐튜닝', '단조휠', '가변배기', '안산TWT'],
-      content: `포르쉐 911 GT3 차주님께서 입고해주신 작업입니다.\n\n[주요 작업 내역]\n- 하이플로우 캣백 커스텀 가변 배기 라인 제작\n- 전용 사운드 컨트롤 밸브 결합 (모드별 사운드 가변)\n- 초경량 알루미늄 커스텀 단조휠 20인치/21인치 피팅\n\n완벽한 레이싱 감성의 고음역 배기 사운드와 미세 단차 없는 휠 옵셋으로 차주님께서 극찬을 아끼지 않으신 작업이었습니다.`,
-      date: '2026-08-10'
-    },
-    {
-      id: 'post-2',
-      title: '[BMW M4 G82] CSL 스타일 풀 카본 바디킷 & 커스텀 핸들',
-      carModel: 'BMW M4 Competition',
-      category: '수입차 컨버전',
-      imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200&auto=format&fit=crop',
-      tags: ['BMWM4', 'CSL컨버전', '카본바디킷', '커스텀핸들'],
-      content: `BMW M4 신형 차량의 CSL 스타일 전면 범퍼 및 리얼 카본 디퓨저, 알칸타라 LED 커스텀 스티어링휠 시공입니다.\n\n순정 센서 및 카메라 부위의 완벽한 이식과 단차 1mm 이내 고난도 정밀 장착을 진행했습니다.`,
-      date: '2026-08-08'
-    },
-    {
-      id: 'post-3',
-      title: '[Benz G63 AMG] 22인치 멀티스포크 커스텀 단조휠 장착',
-      carModel: 'Mercedes-AMG G63',
-      category: '커스텀 단조휠',
-      imageUrl: 'https://images.unsplash.com/photo-1520050206274-a1ae44613e6d?q=80&w=1200&auto=format&fit=crop',
-      tags: ['지바겐', 'G63AMG', '22인치단조휠', '캘리퍼도색'],
-      content: `지바겐 특유의 육중한 차체에 최적화된 하중 지수 전용 22인치 풀 단조휠 및 브렌보 레드 캘리퍼 커스텀 페인팅 시공입니다.`,
-      date: '2026-08-05'
-    },
-    {
-      id: 'post-4',
-      title: '[Audi RS6 Avant] 전면 사고 수리 및 1:1 대물 보험수리 완료',
-      carModel: 'Audi RS6 Avant',
-      category: '보험 사고수리',
-      imageUrl: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1200&auto=format&fit=crop',
-      tags: ['아우디RS6', '보험사고수리', '안산판금도색', '수입차수리'],
-      content: `아우디 RS6 차량의 전면 추돌 사고 정밀 복원 작업입니다. 정품 매뉴얼에 따른 조색 도색 및 센서 교정 작업으로 신차급 상태로 원상 복구해 드렸습니다.`,
-      date: '2026-08-01'
-    }
+  document.querySelector('.burger').addEventListener('click', () => {
+    const links = document.querySelector('.links');
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:fixed;top:64px;left:0;right:0;background:#fff;flex-direction:column;gap:0;padding:8px 32px 20px;border-bottom:1px solid #e6e7eb;z-index:99;';
+    document.querySelectorAll('.links a').forEach(a => a.style.padding = open ? '' : '12px 0');
+  });
+  const io = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); }); }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ===== 블로그 최신글 자동 연동 =====
+     1) 아래 BLOG_RSS_URL 에 본인 블로그의 RSS 주소를 넣어주세요.
+        - 네이버 블로그: https://rss.blog.naver.com/블로그아이디.xml
+        - 티스토리:      https://블로그주소/rss
+     2) 브라우저는 CORS 정책 때문에 blog.naver.com 페이지를 코드에서 직접 읽을 수 없어서,
+        RSS 주소를 변환 서비스에 넣어 가져오는 방식입니다. 서비스 하나가 막히면(특히 네이버는
+        외부 서버의 요청을 자주 차단합니다) 자동으로 다음 서비스를 시도합니다.
+     3) 그래도 하나도 안 되면 아래 갤러리는 원래 있던 기본 카드 4개가 그대로 보입니다.
+        이 경우 CodePen만으로는 완전 자동 연동이 어려우니, 새 글 올릴 때마다
+        아래 gal-card 를 하나 복사해서 제목/링크만 바꿔주시는 방법이 가장 확실합니다. */
+  const BLOG_RSS_URL = "https://rss.blog.naver.com/ehgmlsksgml.xml";
+  const RSS_PROXIES = [
+    url => `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`,
+    url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
   ];
 
-  const CATEGORIES = ['전체', '수입차 컨버전', '배기튜닝', '커스텀 단조휠', '커스텀 핸들', '카본파츠', '보험 사고수리'];
+  function parseXmlItems(xmlText){
+    const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
+    const items = Array.from(doc.querySelectorAll('item')).slice(0, 4);
+    return items.map(it => ({
+      title: it.querySelector('title')?.textContent || '',
+      link: it.querySelector('link')?.textContent || '',
+      pubDate: it.querySelector('pubDate')?.textContent || ''
+    }));
+  }
 
-  let posts = [];
-  let currentCategory = '전체';
+  function renderBlogCards(items){
+    if(!items || !items.length) return false;
+    const grid = document.getElementById('blogGrid');
+    grid.innerHTML = items.map(item => {
+      const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('ko-KR') : '';
+      const title = (item.title || '').replace(/</g,'&lt;');
+      return `<a class="gal-card reveal in-view" href="${item.link}" target="_blank" rel="noopener">
+        <div class="gal-body"><div class="gal-tag">${date}</div><div class="gal-title">${title}</div></div>
+      </a>`;
+    }).join('');
+    return true;
+  }
 
-  // Load Posts from LocalStorage or initialize
-  function initPosts() {
-    const saved = localStorage.getItem('twt_posts_v1');
-    if (saved) {
-      try {
-        posts = JSON.parse(saved);
-      } catch (e) {
-        posts = INITIAL_POSTS;
+  async function loadBlogPosts(){
+    if(!BLOG_RSS_URL) return;
+    // 1차: rss2json (JSON으로 바로 옴)
+    try{
+      const res = await fetch(RSS_PROXIES[0](BLOG_RSS_URL));
+      const data = await res.json();
+      if(data.status === 'ok' && data.items?.length){
+        if(renderBlogCards(data.items.slice(0,4).map(i => ({title:i.title, link:i.link, pubDate:i.pubDate})))) return;
       }
-    } else {
-      posts = INITIAL_POSTS;
-      savePostsToStorage();
+    }catch(e){ console.warn('rss2json 실패, 다음 방법 시도', e); }
+
+    // 2차, 3차: 원본 RSS(XML)를 프록시로 받아 직접 파싱
+    for(let i = 1; i < RSS_PROXIES.length; i++){
+      try{
+        const res = await fetch(RSS_PROXIES[i](BLOG_RSS_URL));
+        const text = await res.text();
+        const items = parseXmlItems(text);
+        if(renderBlogCards(items)) return;
+      }catch(e){ console.warn(`프록시 ${i} 실패`, e); }
     }
-    renderCategoryTabs();
-    renderPosts();
+    console.warn('모든 방법이 실패했습니다. 블로그가 비공개이거나 네이버가 요청을 차단했을 수 있습니다. 기본 카드가 표시됩니다.');
   }
-
-  function savePostsToStorage() {
-    localStorage.setItem('twt_posts_v1', JSON.stringify(posts));
-    updatePostBadge();
-  }
-
-  function updatePostBadge() {
-    const badge = document.getElementById('postCountBadge');
-    if (badge) badge.innerText = posts.length;
-  }
-
-  // Category Tabs Rendering
-  function renderCategoryTabs() {
-    const container = document.getElementById('categoryTabs');
-    container.innerHTML = CATEGORIES.map(cat => `
-      <button onclick="setCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-        currentCategory === cat 
-          ? 'bg-twt-red text-white shadow-lg shadow-twt-red/20' 
-          : 'bg-twt-panel hover:bg-neutral-800 border border-twt-border text-twt-gray hover:text-white'
-      }">
-        ${cat}
-      </button>
-    `).join('');
-  }
-
-  function setCategory(cat) {
-    currentCategory = cat;
-    renderCategoryTabs();
-    renderPosts();
-  }
-
-  // Render Posts Grid
-  function renderPosts() {
-    const grid = document.getElementById('postsGrid');
-    const emptyState = document.getElementById('emptyPostsState');
-    const searchVal = document.getElementById('searchInput').value.trim().toLowerCase();
-
-    const filtered = posts.filter(post => {
-      const matchCat = currentCategory === '전체' || post.category === currentCategory;
-      const matchSearch = !searchVal || 
-        post.title.toLowerCase().includes(searchVal) ||
-        post.carModel.toLowerCase().includes(searchVal) ||
-        post.content.toLowerCase().includes(searchVal) ||
-        (post.tags && post.tags.some(t => t.toLowerCase().includes(searchVal)));
-      return matchCat && matchSearch;
-    });
-
-    if (filtered.length === 0) {
-      grid.innerHTML = '';
-      emptyState.classList.remove('hidden');
-      return;
-    }
-
-    emptyState.classList.add('hidden');
-    grid.innerHTML = filtered.map(post => `
-      <div class="card-glow rounded-2xl overflow-hidden flex flex-col justify-between group">
-        <div>
-          <!-- Card Image & Tag -->
-          <div class="relative aspect-[16/10] overflow-hidden bg-neutral-900 cursor-pointer" onclick="openDetailModal('${post.id}')">
-            <img src="${post.imageUrl}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=800&auto=format&fit=crop'" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-            <span class="absolute top-3 left-3 bg-twt-red text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md shadow">
-              ${post.category}
-            </span>
-            <span class="absolute bottom-3 left-3 text-xs font-bold text-twt-orange flex items-center space-x-1">
-              <i class="fa-solid fa-car"></i>
-              <span>${post.carModel}</span>
-            </span>
-          </div>
-
-          <!-- Card Content -->
-          <div class="p-5 space-y-3">
-            <div class="text-[11px] text-twt-gray flex items-center space-x-2">
-              <i class="fa-regular fa-calendar text-twt-red"></i>
-              <span>${post.date || '2026-08-13'}</span>
-            </div>
-
-            <h3 onclick="openDetailModal('${post.id}')" class="font-bold text-base text-white hover:text-twt-orange transition-colors line-clamp-2 cursor-pointer leading-snug">
-              ${post.title}
-            </h3>
-
-            <p class="text-twt-gray text-xs line-clamp-2 leading-relaxed">
-              ${post.content}
-            </p>
-
-            <!-- Tags -->
-            ${post.tags && post.tags.length > 0 ? `
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                ${post.tags.map(tag => `<span class="bg-neutral-900 text-twt-gray border border-twt-border text-[10px] px-2 py-0.5 rounded">#${tag}</span>`).join('')}
-              </div>
-            ` : ''}
-          </div>
-        </div>
-
-        <!-- Card Footer Action Buttons -->
-        <div class="px-5 pb-5 pt-2 border-t border-twt-border/40 flex items-center justify-between text-xs">
-          <button onclick="openDetailModal('${post.id}')" class="text-twt-orange hover:underline font-bold flex items-center space-x-1">
-            <span>상세보기</span>
-            <i class="fa-solid fa-chevron-right text-[10px]"></i>
-          </button>
-
-          <div class="flex items-center space-x-2">
-            <button onclick="openEditModal('${post.id}')" class="p-1.5 text-twt-gray hover:text-white" title="포스트 수정">
-              <i class="fa-solid fa-pen-to-square"></i>
-            </button>
-            <button onclick="deletePost('${post.id}')" class="p-1.5 text-twt-gray hover:text-twt-red" title="포스트 삭제">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    `).join('');
-    updatePostBadge();
-  }
-
-  // Modal Functions
-  function openWriteModal() {
-    document.getElementById('postIdInput').value = '';
-    document.getElementById('postForm').reset();
-    document.getElementById('modalFormTitle').innerText = '새 시공 포스트 작성';
-    document.getElementById('writeModal').classList.remove('hidden');
-  }
-
-  function openEditModal(id) {
-    const post = posts.find(p => p.id === id);
-    if (!post) return;
-    document.getElementById('postIdInput').value = post.id;
-    document.getElementById('postTitle').value = post.title;
-    document.getElementById('postCarModel').value = post.carModel;
-    document.getElementById('postCategory').value = post.category;
-    document.getElementById('postImageUrl').value = post.imageUrl;
-    document.getElementById('postTags').value = (post.tags || []).join(', ');
-    document.getElementById('postContent').value = post.content;
-    document.getElementById('modalFormTitle').innerText = '시공 포스트 수정';
-    document.getElementById('writeModal').classList.remove('hidden');
-  }
-
-  function closeWriteModal() {
-    document.getElementById('writeModal').classList.add('hidden');
-  }
-
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    const id = document.getElementById('postIdInput').value;
-    const title = document.getElementById('postTitle').value.trim();
-    const carModel = document.getElementById('postCarModel').value.trim();
-    const category = document.getElementById('postCategory').value;
-    const imageUrl = document.getElementById('postImageUrl').value.trim();
-    const tagsRaw = document.getElementById('postTags').value.trim();
-    const content = document.getElementById('postContent').value.trim();
-
-    const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
-    const date = new Date().toISOString().split('T')[0];
-
-    if (id) {
-      // Update
-      const idx = posts.findIndex(p => p.id === id);
-      if (idx !== -1) {
-        posts[idx] = { ...posts[idx], title, carModel, category, imageUrl, tags, content };
-        showToast('포스트가 수정되었습니다.');
-      }
-    } else {
-      // Create
-      const newPost = {
-        id: 'post-' + Date.now(),
-        title, carModel, category, imageUrl, tags, content, date
-      };
-      posts.unshift(newPost);
-      showToast('새 시공 포스트가 등록되었습니다.');
-    }
-
-    savePostsToStorage();
-    renderPosts();
-    closeWriteModal();
-  }
-
-  function deletePost(id) {
-    if (confirmCustom('이 시공 포스트를 정말 삭제하시겠습니까?')) {
-      posts = posts.filter(p => p.id !== id);
-      savePostsToStorage();
-      renderPosts();
-      showToast('포스트가 삭제되었습니다.');
-    }
-  }
-
-  function openDetailModal(id) {
-    const post = posts.find(p => p.id === id);
-    if (!post) return;
-
-    const modalContent = document.getElementById('detailModalContent');
-    modalContent.innerHTML = `
-      <div class="relative aspect-[16/9] w-full bg-neutral-950">
-        <img src="${post.imageUrl}" alt="${post.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=800&auto=format&fit=crop'" />
-        <div class="absolute inset-0 bg-gradient-to-t from-twt-card via-transparent to-transparent"></div>
-        <div class="absolute bottom-4 left-6 right-6">
-          <span class="bg-twt-red text-white text-xs font-bold px-3 py-1 rounded-md uppercase">
-            ${post.category}
-          </span>
-          <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white mt-2 leading-tight">
-            ${post.title}
-          </h2>
-        </div>
-      </div>
-
-      <div class="p-6 sm:p-8 space-y-6">
-        <div class="flex flex-wrap items-center justify-between text-xs text-twt-gray border-b border-twt-border pb-4 gap-2">
-          <div class="flex items-center space-x-4">
-            <span><i class="fa-solid fa-car text-twt-orange mr-1"></i> ${post.carModel}</span>
-            <span><i class="fa-regular fa-calendar text-twt-red mr-1"></i> ${post.date || '2026-08-13'}</span>
-          </div>
-          <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> TWT 검수 완료</span>
-        </div>
-
-        <div class="text-neutral-200 text-xs sm:text-sm leading-relaxed whitespace-pre-line">
-          ${post.content}
-        </div>
-
-        ${post.tags && post.tags.length > 0 ? `
-          <div class="flex flex-wrap gap-2 pt-2">
-            ${post.tags.map(tag => `<span class="bg-twt-panel border border-twt-border text-twt-orange text-xs px-2.5 py-1 rounded-lg">#${tag}</span>`).join('')}
-          </div>
-        ` : ''}
-
-        <div class="pt-6 border-t border-twt-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <div class="text-xs text-twt-gray">해당 시공에 대한 동일 작업 견적이 궁금하신가요?</div>
-            <div class="text-white font-bold text-sm">TWT 수입차 전문 상담원 1:1 연결</div>
-          </div>
-          <div class="flex items-center space-x-3 w-full sm:w-auto">
-            <button onclick="closeDetailModal()" class="px-5 py-3 rounded-xl border border-twt-border text-xs text-twt-gray hover:text-white hover:bg-neutral-800 transition-colors shrink-0 font-medium">
-              닫기
-            </button>
-            <a href="tel:010-8888-6061" class="btn-gradient px-6 py-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-2 flex-1 sm:flex-initial">
-              <i class="fa-solid fa-phone"></i>
-              <span>010-8888-6061 문의하기</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    `;
-
-    document.getElementById('detailModal').classList.remove('hidden');
-  }
-
-  function closeDetailModal() {
-    document.getElementById('detailModal').classList.add('hidden');
-  }
-
-  function setSampleImageUrl() {
-    const samples = [
-      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1520050206274-a1ae44613e6d?q=80&w=1200&auto=format&fit=crop'
-    ];
-    const pick = samples[Math.floor(Math.random() * samples.length)];
-    document.getElementById('postImageUrl').value = pick;
-    showToast('샘플 고화질 이미지가 설정되었습니다.');
-  }
-
-  // Backup JSON Export & Import
-  function exportPostsData() {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(posts, null, 2));
-    const dlAnchorElem = document.createElement('a');
-    dlAnchorElem.setAttribute("href", dataStr);
-    dlAnchorElem.setAttribute("download", `twt_posts_backup_${new Date().toISOString().split('T')[0]}.json`);
-    document.body.appendChild(dlAnchorElem);
-    dlAnchorElem.click();
-    dlAnchorElem.remove();
-    showToast('포스트 데이터 백업 파일이 다운로드되었습니다.');
-  }
-
-  function importPostsData(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      try {
-        const imported = JSON.parse(e.target.result);
-        if (Array.isArray(imported)) {
-          posts = imported;
-          savePostsToStorage();
-          renderPosts();
-          showToast('포스트 복원이 완료되었습니다.');
-        }
-      } catch (err) {
-        showToast('JSON 파일을 읽는 중 오류가 발생했습니다.');
-      }
-    };
-    reader.readAsText(file);
-  }
-
-  // Utility Functions
-  function copyToClipboard(text) {
-    const dummy = document.createElement('textarea');
-    document.body.appendChild(dummy);
-    dummy.value = text;
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
-    showToast('클립보드에 복사되었습니다: ' + text);
-  }
-
-  function openKakaoMap() {
-    window.open('https://map.kakao.com/link/search/경기도 안산시 단원구 성곡동 851-5', '_blank');
-  }
-
-  function openNaverMap() {
-    window.open('https://map.naver.com/v5/search/경기도 안산시 단원구 성곡동 851-5', '_blank');
-  }
-
-  function showToast(msg) {
-    const toast = document.getElementById('toast');
-    const toastMsg = document.getElementById('toastMsg');
-    toastMsg.innerText = msg;
-    toast.classList.remove('translate-y-20', 'opacity-0');
-    setTimeout(() => {
-      toast.classList.add('translate-y-20', 'opacity-0');
-    }, 3000);
-  }
-
-  // Custom Confirm Alternative Modal Guard
-  function confirmCustom(msg) {
-    return window.confirm ? window.confirm(msg) : true;
-  }
-
-  // ESC Key Listener to Close Modals
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeDetailModal();
-      closeWriteModal();
-    }
-  });
-
-  // Event Listeners for Mobile Drawer Toggle
-  document.addEventListener('DOMContentLoaded', () => {
-    initPosts();
-
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const drawer = document.getElementById('mobileDrawer');
-
-    if (mobileBtn && drawer) {
-      mobileBtn.addEventListener('click', () => {
-        drawer.classList.toggle('hidden');
-      });
-
-      document.querySelectorAll('.mobile-nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          drawer.classList.add('hidden');
-        });
-      });
-    }
-  });
+  loadBlogPosts();
 </script>
 
 </body>
