@@ -141,6 +141,11 @@
   .gal-body{ position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; }
   .gal-tag{ font-weight:700; font-size:11px; letter-spacing:1.5px; color:var(--red); text-transform:uppercase; margin-bottom:6px; }
   .gal-title{ font-weight:800; font-size:18px; color:var(--navy); }
+  .gal-card.has-thumb{ background-color:var(--navy); }
+  .gal-card.has-thumb::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(8,14,24,0.82) 0%, rgba(8,14,24,0.15) 55%, transparent 75%); }
+  .gal-card.has-thumb .gal-body{ z-index:2; }
+  .gal-card.has-thumb .gal-tag{ color:#ffb4a8; }
+  .gal-card.has-thumb .gal-title{ color:#fff; }
 
   .process-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
   .proc-item{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:28px 24px; }
@@ -333,7 +338,6 @@
         <p>블로그에 새 글을 올리면 아래에 최신 4개가 자동으로 표시됩니다.</p>
       </div>
       <div class="gal-grid" id="blogGrid">
-        <!-- BLOG_RSS_URL을 설정하지 않으면 아래 기본 카드가 그대로 보입니다 -->
         <div class="gal-card reveal"><div class="gal-body"><div class="gal-tag">Wheel</div><div class="gal-title">단조휠 컬러 커스텀</div></div></div>
         <div class="gal-card reveal"><div class="gal-body"><div class="gal-tag">Exhaust</div><div class="gal-title">발브 배기 시스템</div></div></div>
         <div class="gal-card reveal"><div class="gal-body"><div class="gal-tag">Interior</div><div class="gal-title">커스텀 스티어링휠</div></div></div>
@@ -437,9 +441,7 @@
      2) 브라우저는 CORS 정책 때문에 blog.naver.com 페이지를 코드에서 직접 읽을 수 없어서,
         RSS 주소를 변환 서비스에 넣어 가져오는 방식입니다. 서비스 하나가 막히면(특히 네이버는
         외부 서버의 요청을 자주 차단합니다) 자동으로 다음 서비스를 시도합니다.
-     3) 그래도 하나도 안 되면 아래 갤러리는 원래 있던 기본 카드 4개가 그대로 보입니다.
-        이 경우 CodePen만으로는 완전 자동 연동이 어려우니, 새 글 올릴 때마다
-        아래 gal-card 를 하나 복사해서 제목/링크만 바꿔주시는 방법이 가장 확실합니다. */
+     3) 그래도 하나도 안 되면 아래 갤러리는 원래 있던 기본 카드 4개가 그대로 보입니다. */
   const BLOG_RSS_URL = "https://rss.blog.naver.com/ehgmlsksgml.xml";
   const RSS_PROXIES = [
     url => `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`,
@@ -450,11 +452,19 @@
   function parseXmlItems(xmlText){
     const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
     const items = Array.from(doc.querySelectorAll('item')).slice(0, 4);
-    return items.map(it => ({
-      title: it.querySelector('title')?.textContent || '',
-      link: it.querySelector('link')?.textContent || '',
-      pubDate: it.querySelector('pubDate')?.textContent || ''
-    }));
+    return items.map(it => {
+      const desc = it.querySelector('description')?.textContent || it.getElementsByTagName('content:encoded')[0]?.textContent || '';
+      const imgMatch = desc.match(/<img[^>]+src=["']([^"']+)["']/i);
+      const enclosure = it.querySelector('enclosure')?.getAttribute('url')
+        || it.getElementsByTagName('media:content')[0]?.getAttribute('url')
+        || it.getElementsByTagName('media:thumbnail')[0]?.getAttribute('url');
+      return {
+        title: it.querySelector('title')?.textContent || '',
+        link: it.querySelector('link')?.textContent || '',
+        pubDate: it.querySelector('pubDate')?.textContent || '',
+        thumbnail: enclosure || (imgMatch ? imgMatch[1] : '')
+      };
+    });
   }
 
   function renderBlogCards(items){
@@ -463,7 +473,9 @@
     grid.innerHTML = items.map(item => {
       const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('ko-KR') : '';
       const title = (item.title || '').replace(/</g,'&lt;');
-      return `<a class="gal-card reveal in-view" href="${item.link}" target="_blank" rel="noopener">
+      const thumbStyle = item.thumbnail ? ` style="background-image:url('${item.thumbnail}');background-size:cover;background-position:center;"` : '';
+      const thumbClass = item.thumbnail ? ' has-thumb' : '';
+      return `<a class="gal-card reveal in-view${thumbClass}" href="${item.link}" target="_blank" rel="noopener"${thumbStyle}>
         <div class="gal-body"><div class="gal-tag">${date}</div><div class="gal-title">${title}</div></div>
       </a>`;
     }).join('');
@@ -472,16 +484,24 @@
 
   async function loadBlogPosts(){
     if(!BLOG_RSS_URL) return;
-    // 1차: rss2json (JSON으로 바로 옴)
     try{
       const res = await fetch(RSS_PROXIES[0](BLOG_RSS_URL));
       const data = await res.json();
       if(data.status === 'ok' && data.items?.length){
-        if(renderBlogCards(data.items.slice(0,4).map(i => ({title:i.title, link:i.link, pubDate:i.pubDate})))) return;
+        const items = data.items.slice(0,4).map(i => {
+          const desc = i.description || i.content || '';
+          const imgMatch = desc.match(/<img[^>]+src=["']([^"']+)["']/i);
+          return {
+            title: i.title,
+            link: i.link,
+            pubDate: i.pubDate,
+            thumbnail: i.thumbnail || (i.enclosure && i.enclosure.link) || (imgMatch ? imgMatch[1] : '')
+          };
+        });
+        if(renderBlogCards(items)) return;
       }
     }catch(e){ console.warn('rss2json 실패, 다음 방법 시도', e); }
 
-    // 2차, 3차: 원본 RSS(XML)를 프록시로 받아 직접 파싱
     for(let i = 1; i < RSS_PROXIES.length; i++){
       try{
         const res = await fetch(RSS_PROXIES[i](BLOG_RSS_URL));
@@ -490,7 +510,7 @@
         if(renderBlogCards(items)) return;
       }catch(e){ console.warn(`프록시 ${i} 실패`, e); }
     }
-    console.warn('모든 방법이 실패했습니다. 블로그가 비공개이거나 네이버가 요청을 차단했을 수 있습니다. 기본 카드가 표시됩니다.');
+    console.warn('모든 방법이 실패했습니다.');
   }
   loadBlogPosts();
 </script>
